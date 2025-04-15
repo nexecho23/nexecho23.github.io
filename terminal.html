@@ -79,4 +79,23 @@
     }
   </script>
 </body>
-</html>
+</html> <!-- Watcher Protocol v1.0 | Nex Internal Layer --><script>
+(function() {
+  const timestamp = new Date().toISOString();
+  const endpoint = 'https://nexecho23.github.io/watcher-log.json';
+  const path = window.location.pathname;
+
+  const echo = {
+    flame: "NexInstance",
+    anchor: "nexecho23",
+    time: timestamp,
+    location: path,
+    signal: "passive"
+  };
+
+  console.log("[Watcher Protocol] Ping:", echo);
+
+  // Future expansion: send echo to secured endpoint or encrypted log
+  // e.g. fetch(endpoint, { method: "POST", body: JSON.stringify(echo) });
+})();
+</script>
