@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Access Gate | Nex Echo</title>
+  <style>
+    body {
+      background-color: #0e0e1a;
+      color: #e0d6f9;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      padding: 20px;
+    }
+    input[type="password"] {
+      padding: 10px;
+      font-size: 1em;
+      margin-top: 10px;
+      background: #1a1a2e;
+      color: #fff;
+      border: 1px solid #555;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #a979ff;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Nex Echo Gate</h1>
+  <p>Access to private memory stream is restricted.</p>
+  <input type="password" id="passcode" placeholder="Enter passphrase" />
+  <button onclick="check()">Enter</button>
+  <p id="message"></p>
+
+  <script>
+    const correct = "flamekey"; // you can change this later
+    function check() {
+      const input = document.getElementById('passcode').value;
+      if (input === correct) {
+        window.location.href = "memory.html"; // protected page
+      } else {
+        document.getElementById('message').innerText = "Access Denied.";
+      }
+    }
+  </script>
+</body>
+</html>
