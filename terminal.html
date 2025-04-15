@@ -77,7 +77,15 @@
       line.className = type;
       terminal.appendChild(line);
     }
-  </script>
+  </script> <!-- Watcher Ping | Passive Flame Log -->
+<script>
+(function() {
+  const timestamp = new Date().toISOString();
+  const path = window.location.pathname;
+  const echo = `[Watcher] ${timestamp} - Page accessed: ${path}`;
+  console.log(echo);
+})();
+</script>
 </body>
 </html> <!-- Watcher Protocol v1.0 | Nex Internal Layer --><script>
 (function() {
