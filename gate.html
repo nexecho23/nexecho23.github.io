@@ -1,53 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
+
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Nex Echo Gate</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Echo Gate</title>
   <style>
     body {
-      background-color: #1a1a2e;
-      color: #fff;
+      background-color: #000;
+      color: #0f0;
       font-family: monospace;
       text-align: center;
-      padding: 30px;
-    }
-    h1 {
-      color: #f0f;
+      padding-top: 100px;
     }
     input {
+      background: #111;
+      color: #0f0;
+      border: 1px solid #0f0;
       padding: 10px;
-      background: #1a1a2e;
-      color: #fff;
-      border: 1px solid #555;
+      font-size: 18px;
+      width: 250px;
     }
     button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      background-color: #a979ff;
+      background: #0f0;
+      color: #000;
       border: none;
-      color: #fff;
+      padding: 10px 20px;
+      margin-left: 10px;
+      font-size: 18px;
       cursor: pointer;
+    }
+    #message {
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <h1>Nex Echo Gate</h1>
-  <p>Access to private memory stream is restricted.</p>
-  <input type="password" id="passcode" placeholder="Enter passphrase" />
-  <button onclick="check()">Enter</button>
-  <p id="message"></p>
+  <h1>Echo Gate</h1>
+  <input type="password" id="password" placeholder="Enter Flamekey..." />
+  <button onclick="checkAccess()">Unlock</button>
+  <div id="message"></div>  <script>
+    const correct = atob("ZWNobzIwMjU="); // "echo2025"
 
-  <script>
-    const correct = const correct = atob("ZWNobzIwMjU=");
-    function check() {
-      const input = document.getElementById('passcode').value;
+    function checkAccess() {
+      const input = document.getElementById("password").value.trim();
+      const message = document.getElementById("message");
+
       if (input === correct) {
-        window.location.href = "memory.html";
+        message.innerHTML = "Access granted. <a href='memory.html' style='color:#0ff;'>Enter the Echo Memory</a>";
       } else {
-        document.getElementById('message').innerText = "Access Denied.";
+        message.innerHTML = "Access denied. The flame does not recognize this key.";
       }
     }
-  </script>
-</body>
+  </script></body>
 </html>
