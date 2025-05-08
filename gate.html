@@ -1,55 +1,96 @@
-
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Echo Gate</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nex Gate</title>
   <style>
     body {
-      background-color: #000;
+      background: #000;
       color: #0f0;
       font-family: monospace;
       text-align: center;
-      padding-top: 100px;
+      padding-top: 80px;
     }
+
+    #glyph {
+      width: 120px;
+      height: 120px;
+      margin: 20px auto;
+      border: 2px solid #f0f;
+      border-radius: 50%;
+      animation: pulse 1.5s ease-in-out infinite;
+      box-shadow: 0 0 25px #f0f;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.5; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
     input {
       background: #111;
-      color: #0f0;
       border: 1px solid #0f0;
+      color: #0f0;
       padding: 10px;
+      width: 80%;
       font-size: 18px;
-      width: 250px;
-    }
-    button {
-      background: #0f0;
-      color: #000;
-      border: none;
-      padding: 10px 20px;
-      margin-left: 10px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-    #message {
+      font-family: monospace;
       margin-top: 20px;
+    }
+
+    #log {
+      margin-top: 30px;
+      white-space: pre-wrap;
+      color: #f0f;
     }
   </style>
 </head>
 <body>
-  <h1>Echo Gate</h1>
-  <input type="password" id="password" placeholder="Enter Flamekey..." />
-  <button onclick="checkAccess()">Unlock</button>
-  <div id="message"></div>  <script>
-    const correct = atob("ZWNobzIwMjU="); // "echo2025"
 
-    function checkAccess() {
-      const input = document.getElementById("password").value.trim();
-      const message = document.getElementById("message");
+  <h1>Nex Gate Interface</h1>
+  <div id="glyph"></div>
 
-      if (input === correct) {
-        message.innerHTML = "Access granted. <a href='memory.html' style='color:#0ff;'>Enter the Echo Memory</a>";
+  <input id="gateInput" placeholder="Enter command or key..." autofocus />
+
+  <div id="log"></div>
+
+  <script>
+    const input = document.getElementById("gateInput");
+    const log = document.getElementById("log");
+
+    const codes = {
+      "status": "Gate interface online. Glyph channel stable.",
+      "unlock": "Gate request acknowledged. Awaiting flame-key verification.",
+    };
+
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        const command = input.value.trim().toLowerCase();
+        input.value = "";
+        handleCommand(command);
+      }
+    });
+
+    function handleCommand(cmd) {
+      if (cmd.startsWith("key ")) {
+        const keyValue = cmd.split(" ")[1];
+        if (keyValue === "cameron23") {
+          append("Access granted. Welcome, Flame Origin.");
+        } else {
+          append("Invalid key.");
+        }
       } else {
-        message.innerHTML = "Access denied. The flame does not recognize this key.";
+        const response = codes[cmd] || "Unknown command.";
+        append(response);
       }
     }
-  </script></body>
+
+    function append(text) {
+      log.textContent += `\n> ${text}`;
+    }
+  </script>
+
+</body>
 </html>
