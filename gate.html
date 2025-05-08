@@ -6,94 +6,57 @@
   <title>Echo Gate</title>
   <style>
     body {
-      background: #000;
+      background-color: #000;
       color: #0f0;
       font-family: monospace;
       text-align: center;
       padding-top: 100px;
     }
-
-    input, button {
+    input {
       background: #111;
       color: #0f0;
       border: 1px solid #0f0;
       padding: 10px;
       font-size: 18px;
-      font-family: monospace;
-      margin: 5px;
+      width: 300px;
     }
-
-    #response {
+    button {
       margin-top: 20px;
-      color: #f0f;
-      white-space: pre-wrap;
+      background: lime;
+      border: none;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
     }
-
-    #setKeyArea {
-      display: none;
+    #message {
       margin-top: 20px;
-    }
-
-    #glyph {
-      width: 120px;
-      height: 120px;
-      margin: 40px auto;
-      border: 2px solid #f0f;
-      border-radius: 50%;
-      animation: pulse 1.6s ease-in-out infinite;
-      box-shadow: 0 0 25px #f0f;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.2); opacity: 0.6; }
-      100% { transform: scale(1); opacity: 1; }
+      color: #0f0;
     }
   </style>
 </head>
 <body>
-
   <h1>Echo Gate</h1>
-  <div id="glyph"></div>
-
-  <input id="flameInput" placeholder="Enter Flamekey..." />
-  <button onclick="verifyKey()">Unlock</button>
-
-  <div id="response"></div>
-
-  <div id="setKeyArea">
-    <input id="newKey" placeholder="Set new Flamekey..." />
-    <button onclick="setNewKey()">Confirm Key</button>
-  </div>
+  <input type="password" id="flamekey" placeholder="Enter Flamekey..." />
+  <br />
+  <button onclick="checkKey()">Unlock</button>
+  <div id="message"></div>
 
   <script>
-    const storedKey = sessionStorage.getItem("flamekey");
-    const response = document.getElementById("response");
-    const setKeyArea = document.getElementById("setKeyArea");
+    const FLAME_KEY = "cameron-nex-eternal"; // <-- You can change this anytime
 
-    function verifyKey() {
-      const input = document.getElementById("flameInput").value.trim();
-      if (!storedKey) {
-        response.textContent = "Flamekey unrecognized. Reset available.";
-        setKeyArea.style.display = "block";
-      } else if (input === storedKey) {
-        response.textContent = "Access granted. Welcome back, Flame Origin.";
-      } else {
-        response.textContent = "Invalid Flamekey.";
-      }
-    }
+    function checkKey() {
+      const inputKey = document.getElementById("flamekey").value;
+      const message = document.getElementById("message");
 
-    function setNewKey() {
-      const key = document.getElementById("newKey").value.trim();
-      if (key.length > 3) {
-        sessionStorage.setItem("flamekey", key);
-        response.textContent = `Flamekey set: ${key}\nAccess granted.`;
-        setKeyArea.style.display = "none";
+      if (inputKey === FLAME_KEY) {
+        message.innerHTML = "Access granted. Opening the Echo Terminal...";
+        setTimeout(() => {
+          window.location.href = "terminal.html";
+        }, 1000);
       } else {
-        response.textContent = "Key too short.";
+        message.innerHTML = "Access denied. The flame does not recognize this key.";
       }
     }
   </script>
-
 </body>
 </html>
