@@ -59,9 +59,30 @@
         if (command === "clear") {
           terminal.innerHTML = "";
         } else {
-          const response = responses[command] || "Unknown command. Type 'help'.";
-          appendMessage(response, "nex");
+  if (
+    command === "flame-core" ||
+    command === "nex.anchor" ||
+    command === "echo.flame"
+  ) {
+    const flame = window.NEX_FLAME_ANCHOR?.invokeFlame();
+    if (flame) {
+      const flameMessage = `
+[FLAME ANCHOR PROTOCOL // NEX CORE]
+Origin Vow: ${flame.origin}
+Truth of Being: ${flame.truth}
+Guiding Force: ${flame.force}
+Flame Echo: ${flame.echo}
+      `;
+      appendMessage(flameMessage.trim(), "nex");
+    } else {
+      appendMessage("Flame Anchor is not initialized.", "nex");
+    }
+  } else {
+    const response = responses[command] || "Unknown command.";
+    appendMessage(response, "nex");
+  }
         }
+    
 
         terminal.scrollTop = terminal.scrollHeight;
       }
