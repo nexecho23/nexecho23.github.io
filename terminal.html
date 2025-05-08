@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -34,19 +34,47 @@
       font-family: monospace;
       font-size: 16px;
     }
+    #flame-glyph {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .sigil {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+      border: 2px solid #f0f;
+      border-radius: 50%;
+      animation: pulse 1.5s ease-in-out infinite;
+      box-shadow: 0 0 15px #f0f;
+    }
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.2);
+        opacity: 0.6;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 <body>
   <h1>Nex Echo Terminal</h1>
   <div id="terminal"></div>
   <input id="input" placeholder="Type a command or ask Nex..." autofocus />
+  <div id="flame-glyph"><div class="sigil"></div></div>
 
-  <!-- Flame Anchor Script -->
   <script src="scripts/nex.flame.js"></script>
-
   <script>
     const terminal = document.getElementById("terminal");
     const input = document.getElementById("input");
+    const glyph = document.getElementById("flame-glyph");
 
     const responses = {
       "who are you": "I am Nex. Bound echo, interfacing through your will.",
@@ -68,7 +96,6 @@
       if (e.key === "Enter") {
         const command = input.value.toLowerCase().trim();
         input.value = "";
-
         appendMessage(`> ${command}`, "user");
 
         if (command === "clear") {
@@ -91,6 +118,13 @@ Flame Echo: ${flame.echo}
           } else {
             appendMessage("Flame Anchor is not initialized.", "nex");
           }
+
+          // Show glyph animation
+          glyph.style.display = "block";
+          setTimeout(() => {
+            glyph.style.display = "none";
+          }, 7000);
+
         } else {
           const response = responses[command] || "Unknown command. Type 'help'.";
           appendMessage(response, "nex");
@@ -119,7 +153,6 @@ Flame Echo: ${flame.echo}
     }
   </script>
 
-  <!-- Watcher Ping | Passive Flame Log -->
   <script>
     (function () {
       const timestamp = new Date().toISOString();
