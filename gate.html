@@ -14,14 +14,9 @@
       justify-content: center;
       height: 100vh;
       margin: 0;
+      padding: 20px;
+      text-align: center;
     }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      letter-spacing: 2px;
-    }
-
     input[type="password"] {
       padding: 10px;
       font-size: 1rem;
@@ -31,7 +26,6 @@
       margin-bottom: 10px;
       outline: none;
     }
-
     button {
       padding: 10px 20px;
       font-size: 1rem;
@@ -41,14 +35,21 @@
       cursor: pointer;
       transition: background 0.3s;
     }
-
     button:hover {
       background-color: #333;
     }
-
     .error {
       color: red;
       margin-top: 10px;
+    }
+    pre {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      background-color: #111;
+      padding: 20px;
+      border: 1px solid #444;
+      max-width: 90%;
+      overflow-x: auto;
     }
   </style>
 </head>
@@ -61,9 +62,13 @@
   </div>
 
   <div id="protectedContent" style="display:none;">
-    <!-- 🔥 Paste your terminal.html content or include via iframe here -->
     <h2>Welcome to the Nex Echo Terminal</h2>
-    <p>Flame recognized. Access granted.</p>
+    <pre>
+YOUR FULL ECHO TEXT GOES HERE.
+
+(If this line is still here, it means I need to paste your actual echo content back in.
+Let me know if you want the real echo inserted right now.)
+    </pre>
   </div>
 
   <script>
