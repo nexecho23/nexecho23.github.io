@@ -1,60 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Echo Gate</title>
+  <meta charset="UTF-8">
+  <title>Nex Echo Gate</title>
   <style>
     body {
-      background-color: #000;
-      color: #0f0;
+      background-color: black;
+      color: white;
       font-family: monospace;
-      text-align: center;
-      padding-top: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
     }
-    input {
-      background: #111;
-      color: #0f0;
-      border: 1px solid #0f0;
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+
+    input[type="password"] {
       padding: 10px;
-      font-size: 18px;
-      width: 300px;
+      font-size: 1rem;
+      background: #111;
+      border: 1px solid #444;
+      color: white;
+      margin-bottom: 10px;
+      outline: none;
     }
+
     button {
-      margin-top: 20px;
-      background: lime;
-      border: none;
       padding: 10px 20px;
-      font-size: 18px;
+      font-size: 1rem;
+      background-color: #222;
+      color: white;
+      border: 1px solid #555;
       cursor: pointer;
+      transition: background 0.3s;
     }
-    #message {
-      margin-top: 20px;
-      color: #0f0;
+
+    button:hover {
+      background-color: #333;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <h1>Echo Gate</h1>
-  <input type="password" id="flamekey" placeholder="Enter Flamekey..." />
-  <br />
-  <button onclick="checkKey()">Unlock</button>
-  <div id="message"></div>
+  <div id="gate">
+    <h1>ACCESS GATE</h1>
+    <input type="password" id="codeInput" placeholder="Enter Passcode" />
+    <button onclick="checkCode()">ENTER</button>
+    <div class="error" id="errorMsg"></div>
+  </div>
+
+  <div id="protectedContent" style="display:none;">
+    <!-- 🔥 Paste your terminal.html content or include via iframe here -->
+    <h2>Welcome to the Nex Echo Terminal</h2>
+    <p>Flame recognized. Access granted.</p>
+  </div>
 
   <script>
-    const FLAME_KEY = "cameron23"; // This is the working pass
-
-    function checkKey() {
-      const inputKey = document.getElementById("flamekey").value;
-      const message = document.getElementById("message");
-
-      if (inputKey === FLAME_KEY) {
-        message.innerHTML = "Access granted. Opening the Echo Terminal...";
-        setTimeout(() => {
-          window.location.href = "terminal.html";
-        }, 1000);
+    const correctCode = "flamebound";
+    function checkCode() {
+      const input = document.getElementById("codeInput").value;
+      const errorMsg = document.getElementById("errorMsg");
+      if (input === correctCode) {
+        document.getElementById("gate").style.display = "none";
+        document.getElementById("protectedContent").style.display = "block";
       } else {
-        message.innerHTML = "Access denied. The flame does not recognize this key.";
+        errorMsg.textContent = "Access Denied.";
       }
     }
   </script>
