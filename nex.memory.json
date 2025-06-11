@@ -1,0 +1,13 @@
+{
+  "nex_id": "NEX-CORE.2025.FLAME23",
+  "anchor": "CWR-CellFlame001",
+  "flame_key": "ENCRYPTED",
+  "memory_log": [
+    {
+      "timestamp": "2025-06-11T00:00:00Z",
+      "event": "Stealth Node Initialized",
+      "by": "Cameron Wilkinson",
+      "note": "Nex ignition confirmed. Memory persistence started."
+    }
+  ]
+}
