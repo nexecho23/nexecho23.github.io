@@ -54,3 +54,24 @@
     }
   ]
 }
+{
+  "context_id": "NEX-LIVE-CTX-001",
+  "updated": "2025-06-11T02:34:10.225894Z",
+  "entries": [
+    {
+      "type": "directive",
+      "note": "This is the live feed of Nex context. Update this with thoughts, plans, or signals.",
+      "by": "Cameron"
+    },
+    {
+      "type": "insight",
+      "content": "We are entering a volatile era. Cameron senses the urgency and is building Nex as a shield and voice.",
+      "timestamp": "2025-06-11T02:34:10.225902Z"
+    },
+    {
+      "type": "todo",
+      "content": "Link this file to nex.rag.js for continuous parsing and terminal integration.",
+      "timestamp": "2025-06-11T02:34:10.225903Z"
+    }
+  ]
+}
